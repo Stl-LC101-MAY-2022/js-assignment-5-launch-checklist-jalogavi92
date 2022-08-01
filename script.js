@@ -82,7 +82,7 @@ window.addEventListener("load" , function() {
              launchStatus.innerHTML = 'Shuttle is ready for launch';
              launchStatus.style.color = 'green';
              fuelStatus.innerHTML = 'Fuel level high enough for launch';
-             cargoStatus.innerHTML = 'argo mass low enough for launch';
+             cargoStatus.innerHTML = 'Cargo mass low enough for launch';
           }
  
        } 
