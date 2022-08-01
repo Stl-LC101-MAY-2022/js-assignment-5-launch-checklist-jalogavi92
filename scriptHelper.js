@@ -81,7 +81,7 @@ function formSubmission (document, list, pilot, copilot, fuelLevel, cargoLevel) 
         cargoStatus.innerHTML = 'CARGO LIGHT ENOUGH FOT TAKEOFF';
         launchStatus.innerHTML = 'SHUTTLE READY FOR LANCH';
         launchStatus.style.color = 'green';
-    } 
+    }
 
    // this the part that will call the data from the HTML.. 
    
