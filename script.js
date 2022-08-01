@@ -85,7 +85,7 @@ window.addEventListener("load" , function() {
              cargoStatus.innerHTML = 'argo mass low enough for launch';
           }
  
-       }
+       } 
  
 
        fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
