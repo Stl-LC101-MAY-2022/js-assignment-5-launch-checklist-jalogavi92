@@ -13,7 +13,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                     <li>Number of Moons: ${moons}</li>
                 </ol>
                 <img src= '${imageUrl}'>
-                 `   
+                 `    
 }
 
 function validateInput(testInput) {
@@ -59,8 +59,8 @@ function formSubmission (document, list, pilot, copilot, fuelLevel, cargoLevel) 
     } 
     else {
     
-    pilotStatus.innerHTML = 'Pilot ${name} is ready';
-    copilotStatus.innerHTML = 'Co-pilot ${copilot} is ready';
+    pilotStatus.innerHTML = 'Pilot'+  pilotStatus.value +'is ready';
+    copilotStatus.innerHTML = 'Co-pilot'+ copilotStatus.value +'is ready';
     list.style.visibility = 'hidden';
     }
 
@@ -73,7 +73,7 @@ function formSubmission (document, list, pilot, copilot, fuelLevel, cargoLevel) 
     } else if (Number(cargoLevel) > 10000) {
         cargoStatus.innerHTML = 'CARGO TOO HEAVY FOR TAKEOFF';
         list.style.visibility = 'visible';
-        launchStatus.innerHTML = 'SHUTTLE NOT RREADY FOR LAUNCH';
+        launchStatus.innerHTML = 'SHUTTLE NOT READY FOR LAUNCH';
         launchStatus.style.color = 'red';
     } else if (Number(cargoLevel) < 10000 && Number(fuelLevel) > 10000) {
         list.style.visibility = `visible`;
@@ -98,6 +98,9 @@ async function myFetch() {
 }
 
 function pickPlanet(planets) {
+    let idx = Math.floor(Math.random() * planets.length);
+    return planets[idx];
+
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;

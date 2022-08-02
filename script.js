@@ -1,91 +1,57 @@
 // // Write your JavaScript code here!
 
-window.addEventListener("load", function() {
+// window.addEventListener("load", function() {
+
+//    let listedPlanets;
+//    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+//    let listedPlanetsResponse;
+//    listedPlanetsResponse.then(function (result) {
+//        listedPlanets = result;
+//        console.log(listedPlanets);
+//    }).then(function () {
+//        console.log(listedPlanets);
+//        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+//    })
+   
+//  });
+
+// First we need to make sure that the javascript loads before the html
+window.addEventListener("load", ()=> {
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (event)=>{
+        event.preventDefault();
+        //List DOM
+        let pilot = document.querySelector("input[name=pilotName]").value;
+        let copilot = document.querySelector("input[name=copilotName]").value;
+        let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
+        let cargoLevel = document.querySelector("input[name=cargoMass]").value;
+        let list = document.getElementById('faultyItems');
+
+        //use formsubmission to validate and update list
+        formSubmission(document,list,pilot,copilot,fuelLevel,cargoLevel);
+    })
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse;
+   let listedPlanetsResponse = myFetch();
    listedPlanetsResponse.then(function (result) {
        listedPlanets = result;
        console.log(listedPlanets);
    }).then(function () {
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
-   })
+       let planet = pickPlanet(listedPlanets);
+       let name = planet.name;
+       let diameter = planet.diameter;
+       let star = planet.star;
+       let distance = planet.distance;
+       let imageUrl = planet.image;
+       let moons = planet.moons;
+       addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl);
+    })
    
- });
-
-// First we need to make sure that the javascript loads before the html
-window.addEventListener("load" , function() {
-
-    let form = document.querySelector("form");
-    form.addEventListener("submit", function(event) {
- 
-       let pilotName = document.querySelector("input[name=pilotName]");
-       let copilotName = document.querySelector("input[name=copilotName]");
-       let fuelLevel = document.querySelector("input[name=fuelLevel]");
-       let cargoMass = document.querySelector("input[name=cargoMass]");
- 
-       let faultyItems = document.getElementById('faultyItems');
-       let fuelStatus = document.getElementById('fuelStatus');
-       let launchStatus = document.getElementById('launchStatus');
-       let pilotStatus = document.getElementById('pilotStatus');
-       let copilotStatus = document.getElementById('copilotStatus');
- 
- 
-       if (pilotName.value === ""|| copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
-          alert("All fields are required!");
-          event.preventDefault();
-       }
- 
-
-       if (isNaN(pilotName.value) || isNaN(copilotName.value)){
-
-          pilotStatus.innerHTML = 'Pilot ' + pilotName.value + ' is ready';
-          copilotStatus.innerHTML = 'Co-pilot ' + copilotName.value + ' is ready';
-       }
-       else{
-          alert("Pilot & Co-pilot need to be human names, not integers!");
-          event.preventDefault();
-       }
- 
-
-       if (isNaN(fuelLevel.value) || isNaN(cargoMass.value)){
-          alert("Fuel level & cargo mass need to be integers!");
-          event.preventDefault();
-       }
-       else{ 
- 
-
-          if(fuelLevel.value < 10000){ 
-             faultyItems.style.visibility = 'visible';
-             fuelStatus.innerHTML = 'Fuel level too low for the journey!';
-             launchStatus.innerHTML = 'Shuttle not ready for launch';
-             launchStatus.style.color = 'red';
-          }else{
-             faultyItems.style.visibility = 'visible';
-             fuelStatus.innerHTML = 'Fuel level high enough for launch';
-          }
-
-          if(cargoMass.value > 10000){  
-             faultyItems.style.visibility = 'visible';
-             cargoStatus.innerHTML = 'Cargo mass too heavy for the shuttle to take off!';
-             launchStatus.innerHTML = 'Shuttle not ready for launch';
-             launchStatus.style.color = 'red';
-          }else{
-             faultyItems.style.visibility = 'visible';
-             cargoStatus.innerHTML = 'Cargo mass low enough for launch';
-          }
- 
-          if(fuelLevel.value >= 10000 && cargoMass.value <= 10000) { 
-             faultyItems.style.visibility = 'visible';
-             launchStatus.innerHTML = 'Shuttle is ready for launch';
-             launchStatus.style.color = 'green';
-             fuelStatus.innerHTML = 'Fuel level high enough for launch';
-             cargoStatus.innerHTML = 'Cargo mass low enough for launch';
-          }
- 
-       } 
+});
+    
  
 
        fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
@@ -105,8 +71,3 @@ window.addEventListener("load" , function() {
           });
       });
  
-       event.preventDefault();
- 
-    });
- 
- })
