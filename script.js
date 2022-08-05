@@ -32,14 +32,15 @@ window.addEventListener("load", ()=> {
     })
 
    let listedPlanets;
-   // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+   //  listedPlanetsResponse equal to the value 
+   //returned by calling myFetch()
    let listedPlanetsResponse = myFetch();
    listedPlanetsResponse.then(function (result) {
        listedPlanets = result;
        console.log(listedPlanets);
    }).then(function () {
        console.log(listedPlanets);
-       // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
+       // call the appropriate helper functions to pick a planet 
        let planet = pickPlanet(listedPlanets);
        let name = planet.name;
        let diameter = planet.diameter;
@@ -51,23 +52,20 @@ window.addEventListener("load", ()=> {
     })
    
 });
-    
- 
 
-       fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
-          response.json().then(function(json){
-             const missionTarget = document.getElementById('missionTarget');
-             const index = Math.floor(Math.random() * json.length - 1);
-             missionTarget.innerHTML = `
-             <ol>
-             <li>Name: ${json[index].name}</li>
-             <li>Diameter: ${json[index].diameter}</li>
-             <li>Star: ${json[index].star}</li>
-             <li>Distance from Earth: ${json[index].distance}</li>
-             <li>Number of Moons: ${json[index].moons}</li>
-             </ol>
-             <img src="${json[index].image}">
-             `;
-          });
-      });
- 
+fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response) {
+    response.json().then(function(json){
+       const missionTarget = document.getElementById('missionTarget');
+       const index = Math.floor(Math.random() * json.length - 1);
+       missionTarget.innerHTML = `
+       <ol>
+       <li>Name: ${json[index].name}</li>
+       <li>Diameter: ${json[index].diameter}</li>
+       <li>Star: ${json[index].star}</li>
+       <li>Distance from Earth: ${json[index].distance}</li>
+       <li>Number of Moons: ${json[index].moons}</li>
+       </ol>
+       <img src="${json[index].image}">
+       `;
+    });
+});

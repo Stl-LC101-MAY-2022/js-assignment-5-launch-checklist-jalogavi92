@@ -27,22 +27,14 @@ function validateInput(testInput) {
 
 }
 
-function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    if (testInput === "" || testInput === null || testInput === 0) {
-        return 'Empty'
-    } else if ((!isNaN(Number(testInput)))) {
-        return 'Is a Number'
-    } else {
-        return 'Not a Number'
-    }
-}
+
 
 function formSubmission (document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     let pilotStatus = document.getElementById('pilotStatus');
     let copilotStatus = document.getElementById('copilotStatus');
     let fuelStatus = document.getElementById('fuelStatus');
-    let launchStatus = document.getElementById('launchStatus');
+    //let launchStatus = document.getElementById('launchStatus');
     let cargoStatus = document.getElementById('cargoStatus');
 
 
@@ -58,8 +50,10 @@ function formSubmission (document, list, pilot, copilot, fuelLevel, cargoLevel) 
         alert('Please do not enter numbers for name of pilot or co-pilot');
     } 
     else {
-    
-    pilotStatus.innerHTML = 'Pilot'+  pilotStatus.value +'is ready';
+        console.log("!Hello");
+    //let launchStatus = document.getElementById("launchStatus");
+    pilotStatus.innerHTML = 'Pilot ${pilotStatus} is ready';
+    //pilotStatus.innerHTML = 'Pilot'+  pilotStatus.testInput +'is ready';
     copilotStatus.innerHTML = 'Co-pilot'+ copilotStatus.value +'is ready';
     list.style.visibility = 'hidden';
     }
@@ -75,14 +69,14 @@ function formSubmission (document, list, pilot, copilot, fuelLevel, cargoLevel) 
         list.style.visibility = 'visible';
         launchStatus.innerHTML = 'SHUTTLE NOT READY FOR LAUNCH';
         launchStatus.style.color = 'red';
-    } else if (Number(cargoLevel) < 10000 && Number(fuelLevel) > 10000) {
-        list.style.visibility = `visible`;
+    } else if (Number(cargoLevel) <= 10000 && Number(fuelLevel) >= 10000) {
+       // list.style.visibility = `visible`;
         fuelStatus.innerHTML = 'ENOUGH FUEL FOR THE JOURNEY';
-        cargoStatus.innerHTML = 'CARGO LIGHT ENOUGH FOT TAKEOFF';
+        cargoStatus.innerHTML = 'CARGO LIGHT ENOUGH FOR TAKEOFF';
         launchStatus.innerHTML = 'SHUTTLE READY FOR LANCH';
         launchStatus.style.color = 'green';
     }
-
+    //console.log("GoodBye");
    // this the part that will call the data from the HTML.. 
    
 }
